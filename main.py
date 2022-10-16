@@ -82,7 +82,7 @@ class Notice(object):
         msg = ""
         post_date = ""
         date = tool.Date()
-        sql = tool.mySQL("jwc")
+        sql = tool.MySQL("jwc")
         try:
             html = self.getRequest()
             if html is None:
@@ -122,13 +122,13 @@ class Notice(object):
 
                 if flag:
 
-                    try:
-                        """写入数据库"""
-                        sql.setData(set_db_data)
-                    except Exception as e:
+                    """写入数据库"""
+                    res = sql.setData(set_db_data)
+                    if res:
+                        pass
+                    else:
                         admin_data["content"] = "老大，好像数据库报错了..."
                         requests.post('http://127.0.0.1:8080/report', json=admin_data)
-                        logger.error(e)
 
                     """发邮件"""
                     tool.senMail(["xxx@foxmail.com"], set_mail_data)

@@ -250,7 +250,7 @@ def senMail(receiver, content):
     print('邮件发送成功!')
 
 
-class mySQL(object):
+class MySQL(object):
     def __init__(self, field: str):
         self.field = field
         self.db = m.connect(host="localhost", user="root", password="xxx", database="xxx")
@@ -268,7 +268,7 @@ class mySQL(object):
 
         return self.dict
 
-    def setData(self, set_data):
+    def setData(self, set_data) -> int:
 
         try:
             # 执行SQL语句 插入多条数据
@@ -276,14 +276,14 @@ class mySQL(object):
             # 提交数据
             self.db.commit()
             print("success")
-            return 0
+            return 1
 
         except Exception as e:
             # 发生错误回滚
             self.db.rollback()
             print("error")
             logger.error(e)
-            return 1
+            return 0
 
 
 class Date(object):
