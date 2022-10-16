@@ -112,8 +112,6 @@ class Notice(object):
                             flag = 1
                             i = i + 1
                     else:
-                        admin_data["content"] = "老大，今天没有新通知哦..."
-                        requests.post('http://127.0.0.1:8080/report', json=admin_data)
                         pass
 
                 print("set_mail_data: " + str(set_mail_data))
@@ -136,6 +134,10 @@ class Notice(object):
                     """推送到QQ"""
                     group_data["content"] = set_qq_data + "[CQ:at,qq=all]"
                     requests.post('http://127.0.0.1:8080/report', json=group_data)
+
+                else:
+                    admin_data["content"] = "老大，今天没有新通知哦..."
+                    requests.post('http://127.0.0.1:8080/report', json=admin_data)
 
                 # 关闭数据库链接
                 sql.closeDB()
