@@ -13,7 +13,7 @@ config = {
     "cid": r"href='(.*)' target",
     "date": r'(\d{4}-\d{1,2}-\d{1,2})',
     "link": r"href='(.*)' target",
-    "title": r"title='(.*)'>",
+    "title": r"title='(.*?)'>",
 }
 
 admin_data = {
